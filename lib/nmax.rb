@@ -3,11 +3,15 @@ require "nmax/version"
 module Nmax
   extend self
 
-  attr_accessor(:stdin) { STDIN }
+  attr_accessor(:stdin)
+  @stdin = $stdin
 
   def perform(number_count)
+    raise 'Number count is less 1' if number_count < 1
+    return [] if stdin.nil?
+
     numbers = []
-    current_number_str = ""
+    current_number_str = ''
     while symbol = stdin.getc
       if symbol =~ /\d/
         current_number_str << symbol
@@ -19,7 +23,10 @@ module Nmax
       insert_into_array(numbers, current_number_str.to_i, number_count)
       current_number_str = ''
     end
-    insert_into_array(numbers, current_number_str.to_i, number_count) unless current_number_str.empty?
+
+    unless current_number_str.empty?
+      insert_into_array(numbers, current_number_str.to_i, number_count)
+    end
     numbers
   end
 

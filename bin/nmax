@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'nmax'
+
+p Nmax.perform(ARGV[0].to_i)

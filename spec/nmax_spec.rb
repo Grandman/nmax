@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Nmax do
-  it 'has a version number' do
-    expect(Nmax::VERSION).not_to be nil
+  it 'raise error if n is less 1' do
+    expect{ Nmax.perform(-1) }.to raise_error('Number count is less 1')
   end
 
   it 'return array of sorted numbers' do
