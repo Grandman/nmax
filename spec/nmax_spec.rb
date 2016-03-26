@@ -6,6 +6,6 @@ describe Nmax do
   end
 
   it 'return array of sorted numbers' do
-    expect(Nmax.perform(10)).to eq([11231, 4444, 45, 24, 12, 5, 4, 3, 3, 2])
+    expect(Nmax.perform(10)).to eq([11231, 4444, 45, 24, 12, 5, 4, 3, 2, 1])
   end
 end

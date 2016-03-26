@@ -14,21 +14,22 @@ module Nmax
         next
       end
 
-      unless current_number_str.empty?
-        insert_into_array(numbers, current_number_str.to_i, number_count)
-        current_number_str = ''
-      end
+      next if current_number_str.empty?
+
+      insert_into_array(numbers, current_number_str.to_i, number_count)
+      current_number_str = ''
     end
     insert_into_array(numbers, current_number_str.to_i, number_count) unless current_number_str.empty?
+    numbers
   end
 
   private
 
   def insert_into_array(array, element, max_elements)
     return array << element if array.empty?
-    index = [*array.each_with_index].bsearch{|x, _| x < element}&.last || array.size
+    index = array.index { |x| x <= element } || array.size
+    return if array[index] == element
     array.insert(index, element)
     array.pop if array.size > max_elements
-    array
   end
 end
